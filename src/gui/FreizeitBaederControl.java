@@ -22,15 +22,12 @@ public class FreizeitBaederControl {
 	
 	public void schreibeFreizeitbaederInDatei(String typ) {
 		try {
-			if("csv".equals(typ)) {
-				model.schreibeFreizeitbaederInDatei(typ);
-			}
-			else if("txt".equals(typ)) {
-				model.schreibeFreizeitbaederInDatei(typ);
-			}
-			else {
+			if("csv".equals(typ)) 
+				model.schreibeFreizeitbaederInCsvDatei();
+			else if("txt".equals(typ)) 
+				model.schreibeFreizeitbaederInTxtDatei();
+			else
 				view.zeigeInformationsfensterAn("Noch nicht implementiert!");
-			}
 		}
 		catch(IOException exc) {
 			view.zeigeFehlermeldungsfensterAn("IOException","IOException beim Speichern!");
@@ -48,8 +45,8 @@ public class FreizeitBaederControl {
 	}
 
 
-	public void nehmeFreizeitbadAuf(String name, String von, String bis, String Beckenlaenge,String temperatur) {
-		model.nehmeFreizeitbadAuf(name,von,bis,Beckenlaenge,temperatur);
+	public void nehmeFreizeitbadAuf(Freizeitbad bad) {
+		model.nehmeFreizeitbadAuf(bad);
 		
 	}
 	

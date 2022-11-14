@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import ownUtil.MeldungsfensterAnzeiger;
+import ownUtil.PlausiException;
 
 public class FreizeitBaederView {
 
@@ -147,12 +148,19 @@ public class FreizeitBaederView {
 	    btnEingabe.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-        	    control.nehmeFreizeitbadAuf(	
-        	    		txtName.getText(), 
-           	            txtGeoeffnetVon.getText(),
-           	            txtGeoeffnetBis.getText(),
-            		    txtBeckenlaenge.getText(),
-            		    txtWassTemperatur.getText());
+        	    
+            	Freizeitbad bad;
+				try {
+					bad = new Freizeitbad(
+							txtName.getText(), 
+					        txtGeoeffnetVon.getText(),
+					        txtGeoeffnetBis.getText(),
+						    txtBeckenlaenge.getText(),
+						    txtWassTemperatur.getText());
+					control.nehmeFreizeitbadAuf(bad);
+				} catch (PlausiException e1) {
+					System.out.println(e1.getLocalizedMessage());
+				}
             }
 	    });
 	    btnAnzeige.setOnAction(new EventHandler<ActionEvent>() {
